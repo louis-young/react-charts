@@ -1,4 +1,4 @@
-import { DetailedHTMLProps, HTMLAttributes } from "react";
+import type { DetailedHTMLProps, HTMLAttributes } from "react";
 import type { UseBarChartParameters } from "./types";
 
 export const useBarChart = ({ series }: UseBarChartParameters) => {
