@@ -9,7 +9,7 @@ export const BarChart = ({ series }: BarChartProps) => {
     string | undefined
   >();
 
-  const { augmentedSeries, getBarChartProps } = useBarChart({
+  const { augmentedSeries, xAxisLabels, getBarChartProps } = useBarChart({
     series,
   });
 
@@ -33,7 +33,7 @@ export const BarChart = ({ series }: BarChartProps) => {
         style={{
           display: "grid",
           gridTemplateColumns: "3rem 1fr",
-          gridTemplateRows: "1fr 3rem",
+          gridTemplateRows: "1fr 3rem 2rem",
         }}
       >
         <div
@@ -69,6 +69,29 @@ export const BarChart = ({ series }: BarChartProps) => {
           style={{
             gridRowStart: 2,
             gridRowEnd: 3,
+            gridColumnStart: 2,
+            gridColumnEnd: 4,
+            display: "grid",
+            gridTemplateColumns: `repeat(${series.length}, 1fr)`,
+            columnGap: "1.5rem",
+            alignItems: "center",
+          }}
+        >
+          {xAxisLabels.map((xAxisLabel) => {
+            return (
+              <h4
+                style={{ textAlign: "center", fontSize: ".9rem", opacity: 0.8 }}
+              >
+                {xAxisLabel}
+              </h4>
+            );
+          })}
+        </div>
+
+        <div
+          style={{
+            gridRowStart: 3,
+            gridRowEnd: 4,
             gridColumnStart: 2,
             gridColumnEnd: 3,
             display: "flex",

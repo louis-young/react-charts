@@ -7,6 +7,11 @@ export const useBarChart = ({ series }: UseBarChartParameters) => {
   }, 0);
 
   // Fix shadowing.
+  const xAxisLabels = series.map((series, index) => {
+    return series.label;
+  });
+
+  // Fix shadowing.
   const augmentedSeries = series.map((augmentedSeries) => {
     return {
       ...augmentedSeries,
@@ -64,6 +69,7 @@ export const useBarChart = ({ series }: UseBarChartParameters) => {
 
   return {
     augmentedSeries,
+    xAxisLabels,
     highestSeriesValue,
     getBarChartProps,
   };
