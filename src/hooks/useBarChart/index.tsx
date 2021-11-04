@@ -48,15 +48,15 @@ export const useBarChart = ({ series }: UseBarChartParameters) => {
         columnGap: "1.5rem",
         height: "500px",
         width: "100%",
-        border: "0.05rem solid rgb(0 0 0 / 25%)",
+        border: "0.05rem solid rgb(0 0 0 / 50%)",
         position: "relative",
         background: `repeating-linear-gradient(to right,
           transparent 0  calc(50px - 1px),
-          rgb(0 0 0 / 25%) calc(50px - 1px) 50px),
+          rgb(0 0 0 / 50%) calc(50px - 1px) 50px),
           
       repeating-linear-gradient(to bottom,
           transparent 0 calc(50px - 1px),
-          rgb(0 0 0 / 25%) calc(50px - 1px) 50px)     
+          rgb(0 0 0 / 50%) calc(50px - 1px) 50px)     
       transparent`,
       },
     };
