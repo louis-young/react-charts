@@ -1,30 +1,95 @@
-# React TypeScript Tailwind
+# Charter
 
-A React project boilerplate with TypeScript and Tailwind.
+A flexible, composable data visualisation library.
 
-## Available Scripts
+![# Charter](documentation/charter.jpg)
 
-In the project directory, you can run:
+## Overview
 
-### `npm start`
+### The problem
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+You want to display a chart in your application, but you want to have full control over the markup. styling and functionality.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### The solution
 
-### `npm test`
+The library exposes a hook for each type of chart. You then consume this hook in your application and compose your own graph using the information supplied by the hook.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Charts
 
-### `npm run build`
+### Bar Chart
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![# Bar Chart](documentation/bar-chart.jpg)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- `useBarChart`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```tsx
+const series = [
+  { label: "Apple", value: 1, colour: "#003f5c" },
+  { label: "Orange", value: 2, colour: "#444e86" },
+  { label: "Strawberry", value: 3, colour: "#955196" },
+  { label: "Grapefruit", value: 4, colour: "#dd5182" },
+  { label: "Lemon", value: 5, colour: "#ff6e54" },
+  { label: "Grape", value: 6, colour: "#ffa600" },
+];
+
+const { augmentedSeries, xAxisLabels, yAxisLabels, getBarChartProps } =
+  useBarChart({
+    series,
+  });
+```
+
+#### Options
+
+- `series: { label: string; value: number; colour: string; }[]` - The series of chart data.
+  - `label` - The label of the bar on the chart.
+  - `value` - The value of the bar on the chart.
+  - `colour` - The colour of the bar on the chart.
+
+#### Returns
+
+- `augmentedSeries` - An augmented/enriched version of the series data with additional properties used to compose the chart.
+
+  ```
+  {
+    getBarProps: <TElement extends unknown>({ onClick, style, ...additionalBarProps }?: DetailedHTMLProps<HTMLAttributes<TElement>, TElement>) => DetailedHTMLProps<HTMLAttributes<TElement>, TElement>;
+    label: string;
+    value: number;
+    colour: string;
+  }[]
+  ```
+
+  - `getBarProps` - A function that returns the necessary collection of properties for the bar on the chart.
+  - `label` - The label of the bar on the chart.
+  - `value` - The value of the bar on the chart.
+  - `colour` - The colour of the bar on the chart.
+
+- `xAxisLabels` - An array of x axis labels.
+- `yAxisLabels` - An array of y axis labels.
+- `getBarChartProps` - A function that returns the necessary collection of properties for the parent chart element.
+
+#### Examples
+
+```tsx
+const series = [
+  { label: "Apple", value: 1, colour: "#003f5c" },
+  { label: "Orange", value: 2, colour: "#444e86" },
+  { label: "Strawberry", value: 3, colour: "#955196" },
+  { label: "Grapefruit", value: 4, colour: "#dd5182" },
+  { label: "Lemon", value: 5, colour: "#ff6e54" },
+  { label: "Grape", value: 6, colour: "#ffa600" },
+];
+
+const BarChart = () => {
+  const { augmentedSeries, getBarChartProps } = useBarChart({
+    series,
+  });
+
+  return (
+    <div {...getBarChartProps()}>
+      {augmentedSeries.map(({ getBarProps }) => (
+        <div {...getBarProps()} />
+      ))}
+    </div>
+  );
+};
+```
