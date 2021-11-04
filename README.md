@@ -2,7 +2,7 @@
 
 A flexible, composable data visualisation library.
 
-![# Charter](documentation/charter.jpg)
+![# Charter](documentation/charter.png)
 
 ## Overview
 
@@ -18,7 +18,7 @@ The library exposes a hook for each type of chart. You then consume this hook in
 
 ### Bar Chart
 
-![# Bar Chart](documentation/bar-chart.jpg)
+![# Bar Chart](documentation/bar-chart.png)
 
 - `useBarChart`
 
