@@ -1,4 +1,4 @@
-import type { DetailedHTMLProps, HTMLAttributes } from "react";
+import { DetailedHTMLProps, HTMLAttributes } from "react";
 import type { UseBarChartParameters } from "./types";
 
 export const useBarChart = ({ series }: UseBarChartParameters) => {
@@ -6,23 +6,32 @@ export const useBarChart = ({ series }: UseBarChartParameters) => {
     return value > accumulator ? value : accumulator;
   }, 0);
 
-  // TODO: Fix shadowing.
+  // Fix shadowing.
   const augmentedSeries = series.map((augmentedSeries) => {
     return {
       ...augmentedSeries,
-      getBarProps: (): DetailedHTMLProps<
-        HTMLAttributes<HTMLDivElement>,
-        HTMLDivElement
-      > => ({
-        onClick: () => {
-          // * Demonstrating a prop getter function returning enriched/augmented functions.
-          console.log(augmentedSeries.value);
+      getBarProps: <TElement extends unknown>({
+        onClick,
+        style,
+        ...additionalBarProps
+      }: DetailedHTMLProps<
+        HTMLAttributes<TElement>,
+        TElement
+      > = {}): DetailedHTMLProps<HTMLAttributes<TElement>, TElement> => ({
+        ...additionalBarProps,
+        onClick: (event) => {
+          // Demonstrating a prop getter function returning enriched/augmented functions.
+          console.log(augmentedSeries.label);
+
+          onClick && onClick(event);
         },
         style: {
+          ...style,
           gridRowStart:
-            Math.floor(highestSeriesValue - augmentedSeries.value) + 1, // * Add one to account for the grid offset.
-          gridRowEnd: highestSeriesValue + 1, // * Add one to account for the grid offset.
+            Math.floor(highestSeriesValue - augmentedSeries.value) + 1, // Add one to account for the grid offset.
+          gridRowEnd: highestSeriesValue + 1, // Add one to account for the grid offset.
           backgroundColor: augmentedSeries.colour,
+          borderRadius: "0.1rem",
         },
       }),
     };
@@ -36,11 +45,19 @@ export const useBarChart = ({ series }: UseBarChartParameters) => {
         display: "grid",
         gridTemplateColumns: `repeat(${seriesCount}, 1fr)`,
         gridTemplateRows: `repeat(${highestSeriesValue}, 1fr)`,
-        columnGap: "1rem",
+        columnGap: "1.5rem",
         height: "500px",
         width: "100%",
-        border: "0.05rem solid rgb(0 0 0 / 7.5%)",
+        border: "0.05rem solid rgb(0 0 0 / 25%)",
         position: "relative",
+        background: `repeating-linear-gradient(to right,
+          transparent 0  calc(50px - 1px),
+          rgb(0 0 0 / 25%) calc(50px - 1px) 50px),
+          
+      repeating-linear-gradient(to bottom,
+          transparent 0 calc(50px - 1px),
+          rgb(0 0 0 / 25%) calc(50px - 1px) 50px)     
+      transparent`,
       },
     };
   };
