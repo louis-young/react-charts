@@ -4,7 +4,7 @@ import type { UseBarChartParameters } from "./types";
 export const useBarChart = ({ series }: UseBarChartParameters) => {
   const highestSeriesValue = series.reduce((accumulator, { value }) => {
     return value > accumulator ? value : accumulator;
-  }, 0);
+  }, Number.MIN_SAFE_INTEGER);
 
   const augmentedSeries = series.map((augmentedSeries) => {
     return {
