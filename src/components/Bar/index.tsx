@@ -1,7 +1,5 @@
 import type { BarProps } from "./types";
 
-// Check if it's okay to pass a generic to a component prop interface?
-
 export const Bar = ({
   series,
   selectedSeriesLabel,

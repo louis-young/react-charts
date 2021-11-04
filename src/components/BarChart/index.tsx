@@ -28,8 +28,6 @@ export const BarChart = ({ series }: BarChartProps) => {
 
       {tooltip && <Tooltip tooltip={tooltip} />}
 
-      {/* Fix shadowing. */}
-
       <div
         style={{
           display: "grid",
@@ -82,7 +80,7 @@ export const BarChart = ({ series }: BarChartProps) => {
           })}
         </div>
 
-        {/* @ts-ignore - Fix type issue. */}
+        {/* @ts-ignore */}
         <div {...getBarChartProps()}>
           {augmentedSeries.map((series) => (
             <Bar
