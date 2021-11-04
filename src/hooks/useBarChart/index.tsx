@@ -59,12 +59,12 @@ export const useBarChart = ({ series }: UseBarChartParameters) => {
         border: "0.05rem solid rgb(0 0 0 / 50%)",
         position: "relative",
         background: `repeating-linear-gradient(to right,
-          transparent 0  calc(${verticalGridCount} - 1px),
-          rgb(0 0 0 / 50%) calc(${verticalGridCount} - 1px) ${verticalGridCount}),
+          transparent 0  calc(${verticalGridCount}px - 1px),
+          rgb(0 0 0 / 50%) calc(${verticalGridCount}px - 1px) ${verticalGridCount}px),
           
       repeating-linear-gradient(to bottom,
-          transparent 0 calc(${verticalGridCount} - 1px),
-          rgb(0 0 0 / 50%) calc(${verticalGridCount} - 1px) ${verticalGridCount})     
+          transparent 0 calc(${verticalGridCount}px - 1px),
+          rgb(0 0 0 / 50%) calc(${verticalGridCount}px - 1px) ${verticalGridCount}px)     
       transparent`,
       },
     };
