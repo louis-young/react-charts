@@ -56,9 +56,9 @@ export const BarChart = ({ series }: BarChartProps) => {
             gridRowEnd: 2,
             gridColumnStart: 2,
             gridColumnEnd: 3,
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between",
+            display: "grid",
+            gridTemplateRows: `repeat(${series.length}, 1fr)`,
+            alignItems: "flex-start",
           }}
         >
           {axisLabels.y.reverse().map((label) => {
@@ -69,6 +69,7 @@ export const BarChart = ({ series }: BarChartProps) => {
                   textAlign: "center",
                   fontSize: ".9rem",
                   opacity: 0.8,
+                  transform: "translateY(-50%)",
                 }}
               >
                 {label}
