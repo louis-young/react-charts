@@ -9,10 +9,9 @@ export const BarChart = ({ series }: BarChartProps) => {
     string | undefined
   >();
 
-  const { augmentedSeries, xAxisLabels, yAxisLabels, getBarChartProps } =
-    useBarChart({
-      series,
-    });
+  const { augmentedSeries, axisLabels, getBarChartProps } = useBarChart({
+    series,
+  });
 
   const [tooltip, setTooltip] = useState<string | undefined>(undefined);
 
@@ -64,7 +63,7 @@ export const BarChart = ({ series }: BarChartProps) => {
             alignItems: "flex-start",
           }}
         >
-          {yAxisLabels.reverse().map((yAxisLabel) => {
+          {axisLabels.y.reverse().map((label) => {
             return (
               <h4
                 style={{
@@ -74,7 +73,7 @@ export const BarChart = ({ series }: BarChartProps) => {
                   transform: "translateY(-50%)",
                 }}
               >
-                {yAxisLabel}
+                {label}
               </h4>
             );
           })}
@@ -105,12 +104,12 @@ export const BarChart = ({ series }: BarChartProps) => {
             alignItems: "center",
           }}
         >
-          {xAxisLabels.map((xAxisLabel) => {
+          {axisLabels.x.map((label) => {
             return (
               <h4
                 style={{ textAlign: "center", fontSize: ".9rem", opacity: 0.8 }}
               >
-                {xAxisLabel}
+                {label}
               </h4>
             );
           })}

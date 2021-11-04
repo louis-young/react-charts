@@ -6,14 +6,6 @@ export const useBarChart = ({ series }: UseBarChartParameters) => {
     return value > accumulator ? value : accumulator;
   }, 0);
 
-  const xAxisLabels = series.map((series) => {
-    return series.label;
-  });
-
-  const yAxisLabels = series.map((series) => {
-    return series.value;
-  });
-
   const augmentedSeries = series.map((augmentedSeries) => {
     return {
       ...augmentedSeries,
@@ -43,6 +35,11 @@ export const useBarChart = ({ series }: UseBarChartParameters) => {
       }),
     };
   });
+
+  const axisLabels = {
+    x: series.map(({ label }) => label),
+    y: series.map(({ value }) => value),
+  };
 
   const seriesCount = series.length;
 
@@ -75,8 +72,7 @@ export const useBarChart = ({ series }: UseBarChartParameters) => {
 
   return {
     augmentedSeries,
-    xAxisLabels,
-    yAxisLabels,
+    axisLabels,
     highestSeriesValue,
     getBarChartProps,
   };

@@ -32,10 +32,9 @@ const series = [
   { label: "Grape", value: 6, colour: "#ffa600" },
 ];
 
-const { augmentedSeries, xAxisLabels, yAxisLabels, getBarChartProps } =
-  useBarChart({
-    series,
-  });
+const { augmentedSeries, axisLabels, getBarChartProps } = useBarChart({
+  series,
+});
 ```
 
 #### Options
@@ -63,8 +62,11 @@ const { augmentedSeries, xAxisLabels, yAxisLabels, getBarChartProps } =
   - `value` - The value of the bar on the chart.
   - `colour` - The colour of the bar on the chart.
 
-- `xAxisLabels` - An array of x axis labels.
-- `yAxisLabels` - An array of y axis labels.
+- `axisLabels: { x: string[]; y: string[] }` - An array of x axis labels.
+
+  - `x` - The x axis labels.
+  - `y` - The y axis labels.
+
 - `getBarChartProps` - A function that returns the necessary collection of properties for the parent chart element.
 
 #### Examples
