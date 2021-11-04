@@ -7,8 +7,13 @@ export const useBarChart = ({ series }: UseBarChartParameters) => {
   }, 0);
 
   // Fix shadowing.
-  const xAxisLabels = series.map((series, index) => {
+  const xAxisLabels = series.map((series) => {
     return series.label;
+  });
+
+  // Fix shadowing.
+  const yAxisLabels = series.map((series) => {
+    return series.value;
   });
 
   // Fix shadowing.
@@ -44,6 +49,10 @@ export const useBarChart = ({ series }: UseBarChartParameters) => {
 
   const seriesCount = series.length;
 
+  const height = 500;
+
+  const verticalGridCount = height / seriesCount;
+
   const getBarChartProps = () => {
     return {
       style: {
@@ -56,12 +65,12 @@ export const useBarChart = ({ series }: UseBarChartParameters) => {
         border: "0.05rem solid rgb(0 0 0 / 50%)",
         position: "relative",
         background: `repeating-linear-gradient(to right,
-          transparent 0  calc(50px - 1px),
-          rgb(0 0 0 / 50%) calc(50px - 1px) 50px),
+          transparent 0  calc(${verticalGridCount} - 1px),
+          rgb(0 0 0 / 50%) calc(${verticalGridCount} - 1px) ${verticalGridCount}),
           
       repeating-linear-gradient(to bottom,
-          transparent 0 calc(50px - 1px),
-          rgb(0 0 0 / 50%) calc(50px - 1px) 50px)     
+          transparent 0 calc(${verticalGridCount} - 1px),
+          rgb(0 0 0 / 50%) calc(${verticalGridCount} - 1px) ${verticalGridCount})     
       transparent`,
       },
     };
@@ -70,6 +79,7 @@ export const useBarChart = ({ series }: UseBarChartParameters) => {
   return {
     augmentedSeries,
     xAxisLabels,
+    yAxisLabels,
     highestSeriesValue,
     getBarChartProps,
   };

@@ -9,9 +9,10 @@ export const BarChart = ({ series }: BarChartProps) => {
     string | undefined
   >();
 
-  const { augmentedSeries, xAxisLabels, getBarChartProps } = useBarChart({
-    series,
-  });
+  const { augmentedSeries, xAxisLabels, yAxisLabels, getBarChartProps } =
+    useBarChart({
+      series,
+    });
 
   const [tooltip, setTooltip] = useState<string | undefined>(undefined);
 
@@ -32,7 +33,7 @@ export const BarChart = ({ series }: BarChartProps) => {
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "3rem 1fr",
+          gridTemplateColumns: "3rem 2rem 1fr",
           gridTemplateRows: "1fr 3rem 2rem",
         }}
       >
@@ -52,6 +53,35 @@ export const BarChart = ({ series }: BarChartProps) => {
           <h3 style={{ transform: "rotate(-90deg)" }}>Amount</h3>
         </div>
 
+        <div
+          style={{
+            gridRowStart: 1,
+            gridRowEnd: 2,
+            gridColumnStart: 2,
+            gridColumnEnd: 3,
+            display: "grid",
+            gridTemplateColumns: "1fr",
+            gridTemplateRows: `repeat(${series.length}, 1fr)`,
+            columnGap: "1.5rem",
+            alignItems: "flex-start",
+          }}
+        >
+          {yAxisLabels.reverse().map((yAxisLabel) => {
+            return (
+              <h4
+                style={{
+                  textAlign: "center",
+                  fontSize: ".9rem",
+                  opacity: 0.8,
+                  transform: "translateY(-50%)",
+                }}
+              >
+                {yAxisLabel}
+              </h4>
+            );
+          })}
+        </div>
+
         {/* @ts-ignore - Fix type issue. */}
         <div {...getBarChartProps()}>
           {augmentedSeries.map((series) => (
@@ -69,7 +99,7 @@ export const BarChart = ({ series }: BarChartProps) => {
           style={{
             gridRowStart: 2,
             gridRowEnd: 3,
-            gridColumnStart: 2,
+            gridColumnStart: 3,
             gridColumnEnd: 4,
             display: "grid",
             gridTemplateColumns: `repeat(${series.length}, 1fr)`,
@@ -92,8 +122,8 @@ export const BarChart = ({ series }: BarChartProps) => {
           style={{
             gridRowStart: 3,
             gridRowEnd: 4,
-            gridColumnStart: 2,
-            gridColumnEnd: 3,
+            gridColumnStart: 3,
+            gridColumnEnd: 4,
             display: "flex",
             alignItems: "flex-end",
             justifyContent: "center",
