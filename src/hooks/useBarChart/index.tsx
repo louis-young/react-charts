@@ -6,17 +6,14 @@ export const useBarChart = ({ series }: UseBarChartParameters) => {
     return value > accumulator ? value : accumulator;
   }, 0);
 
-  // Fix shadowing.
   const xAxisLabels = series.map((series) => {
     return series.label;
   });
 
-  // Fix shadowing.
   const yAxisLabels = series.map((series) => {
     return series.value;
   });
 
-  // Fix shadowing.
   const augmentedSeries = series.map((augmentedSeries) => {
     return {
       ...augmentedSeries,
