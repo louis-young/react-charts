@@ -1,7 +1,7 @@
 import { DetailedHTMLProps, HTMLAttributes } from "react";
 import type { UseBarChartParameters } from "./types";
 
-export const useBarChart = ({ series }: UseBarChartParameters) => {
+export const useBarChart = ({ series, height }: UseBarChartParameters) => {
   const highestSeriesValue = series.reduce((accumulator, { value }) => {
     return value > accumulator ? value : accumulator;
   }, Number.MIN_SAFE_INTEGER);
@@ -49,9 +49,7 @@ export const useBarChart = ({ series }: UseBarChartParameters) => {
 
   const seriesCount = series.length;
 
-  const height = 500;
-
-  const verticalGridCount = height / seriesCount;
+  const verticalGridCellCount = height / seriesCount;
 
   const getBarChartProps = () => {
     return {
@@ -65,12 +63,12 @@ export const useBarChart = ({ series }: UseBarChartParameters) => {
         border: "0.05rem solid rgb(0 0 0 / 50%)",
         position: "relative",
         background: `repeating-linear-gradient(to right,
-          transparent 0  calc(${verticalGridCount}px - 1px),
-          rgb(0 0 0 / 50%) calc(${verticalGridCount}px - 1px) ${verticalGridCount}px),
+          transparent 0  calc(${verticalGridCellCount}px - 1px),
+          rgb(0 0 0 / 50%) calc(${verticalGridCellCount}px - 1px) ${verticalGridCellCount}px),
           
       repeating-linear-gradient(to bottom,
-          transparent 0 calc(${verticalGridCount}px - 1px),
-          rgb(0 0 0 / 50%) calc(${verticalGridCount}px - 1px) ${verticalGridCount}px)     
+          transparent 0 calc(${verticalGridCellCount}px - 1px),
+          rgb(0 0 0 / 50%) calc(${verticalGridCellCount}px - 1px) ${verticalGridCellCount}px)     
       transparent`,
       },
     };

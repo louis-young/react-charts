@@ -13,7 +13,7 @@ export const Application = () => {
   return (
     <main className="p-12">
       <section className="max-w-3xl">
-        <BarChart series={series} />
+        <BarChart series={series} height={500} />
       </section>
     </main>
   );

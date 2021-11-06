@@ -4,13 +4,14 @@ import { Bar } from "../Bar";
 import { Tooltip } from "../Tooltip";
 import type { BarChartProps } from "./types";
 
-export const BarChart = ({ series }: BarChartProps) => {
+export const BarChart = ({ series, height }: BarChartProps) => {
   const [selectedSeriesLabel, setSelectedSeriesLabel] = useState<
     string | undefined
   >();
 
   const { augmentedSeries, axisLabels, getBarChartProps } = useBarChart({
     series,
+    height,
   });
 
   const [tooltip, setTooltip] = useState<string | undefined>(undefined);
