@@ -31,7 +31,7 @@ export const BarChart = ({ series, height }: BarChartProps) => {
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "3rem 2rem 1fr",
+          gridTemplateColumns: "3rem 3rem 1fr",
           gridTemplateRows: "1fr 3rem 2rem",
         }}
       >
