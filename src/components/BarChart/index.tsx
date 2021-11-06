@@ -61,7 +61,7 @@ export const BarChart = ({ series }: BarChartProps) => {
             alignItems: "flex-start",
           }}
         >
-          {axisLabels.y.reverse().map((label) => {
+          {axisLabels.y.map((label) => {
             return (
               <h4
                 key={label}

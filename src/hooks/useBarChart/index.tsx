@@ -36,9 +36,13 @@ export const useBarChart = ({ series }: UseBarChartParameters) => {
     };
   });
 
+  const sortedSeriesValues = series
+    .map(({ value }) => value)
+    .sort((a, b) => b - a);
+
   const axisLabels = {
     x: series.map(({ label }) => label),
-    y: series.map(({ value }) => value),
+    y: sortedSeriesValues,
   };
 
   const seriesCount = series.length;
