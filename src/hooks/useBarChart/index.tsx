@@ -36,13 +36,15 @@ export const useBarChart = ({ series }: UseBarChartParameters) => {
     };
   });
 
-  const sortedSeriesValues = series
-    .map(({ value }) => value)
-    .sort((a, b) => b - a);
+  const yAxisLabelCount = 10;
+
+  const yAxisLabelStep = highestSeriesValue / yAxisLabelCount;
 
   const axisLabels = {
     x: series.map(({ label }) => label),
-    y: sortedSeriesValues,
+    y: [...Array(yAxisLabelCount + 1)]
+      .map((item, index) => yAxisLabelStep * index)
+      .reverse(), // Plus one to account for zero index and reverse for display.
   };
 
   const seriesCount = series.length;
