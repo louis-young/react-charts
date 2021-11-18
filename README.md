@@ -1,8 +1,8 @@
-# Charter
+# React Charts
 
-A flexible, composable data visualisation library.
+A flexible, composable data visualisation library for React.
 
-![# Charter](documentation/charter.png)
+![# React Charts](documentation/react-charts.png)
 
 ## Overview
 
