@@ -1,4 +1,5 @@
-import { DetailedHTMLProps, HTMLAttributes } from "react";
+import type { DetailedHTMLProps, HTMLAttributes } from "react";
+import { callAllFunctions } from "../../utilities/callAllFunctions";
 import type { UseBarChartParameters } from "./types";
 
 export const useBarChart = ({ series, height }: UseBarChartParameters) => {
@@ -9,25 +10,17 @@ export const useBarChart = ({ series, height }: UseBarChartParameters) => {
   const augmentedSeries = series.map((augmentedSeries) => {
     return {
       ...augmentedSeries,
-      getBarProps: <TElement extends unknown>({
+      getBarProps: <TElement extends HTMLElement>({
         onClick,
         style,
         ...additionalBarProps
-      }: DetailedHTMLProps<
-        HTMLAttributes<TElement>,
-        TElement
-      > = {}): DetailedHTMLProps<HTMLAttributes<TElement>, TElement> => ({
+      }: DetailedHTMLProps<HTMLAttributes<TElement>, TElement> = {}) => ({
         ...additionalBarProps,
-        onClick: (event) => {
+        onClick: callAllFunctions(() => {
           // Demonstrating a prop getter function returning enriched/augmented functions.
           // eslint-disable-next-line no-console
           console.log(augmentedSeries.label);
-
-          if (!onClick) {
-            return;
-          }
-          onClick(event);
-        },
+        }, onClick),
         style: {
           ...style,
           gridRowStart:
