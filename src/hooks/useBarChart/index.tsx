@@ -20,9 +20,13 @@ export const useBarChart = ({ series, height }: UseBarChartParameters) => {
         ...additionalBarProps,
         onClick: (event) => {
           // Demonstrating a prop getter function returning enriched/augmented functions.
+          // eslint-disable-next-line no-console
           console.log(augmentedSeries.label);
 
-          onClick && onClick(event);
+          if (!onClick) {
+            return;
+          }
+          onClick(event);
         },
         style: {
           ...style,
