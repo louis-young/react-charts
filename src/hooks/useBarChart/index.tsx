@@ -10,7 +10,7 @@ export const useBarChart = ({ series, height }: UseBarChartParameters) => {
   const augmentedSeries = series.map((augmentedSeries) => {
     return {
       ...augmentedSeries,
-      getBarProps: <TElement extends HTMLElement>({
+      getBarProps: <TElement extends unknown>({
         onClick,
         style,
         ...additionalBarProps
