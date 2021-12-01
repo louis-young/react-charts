@@ -1,3 +1,3 @@
 export interface TooltipProps {
-  tooltip: string | number;
+  text: string | number;
 }
