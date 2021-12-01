@@ -58,7 +58,7 @@ export const useBarChart = ({ series, height }: UseBarChartParameters) => {
         gridTemplateColumns: `repeat(${seriesCount}, 1fr)`,
         gridTemplateRows: `repeat(${highestSeriesValue}, 1fr)`,
         columnGap: "1.5rem",
-        height: "500px",
+        height,
         width: "100%",
         border: "0.05rem solid rgb(0 0 0 / 50%)",
         position: "relative",

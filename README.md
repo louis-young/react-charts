@@ -84,6 +84,7 @@ const series = [
 const BarChart = () => {
   const { augmentedSeries, getBarChartProps } = useBarChart({
     series,
+    height: 500
   });
 
   return (
