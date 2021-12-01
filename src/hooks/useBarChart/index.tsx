@@ -65,7 +65,7 @@ export const useBarChart = ({ series, height }: UseBarChartParameters) => {
         height,
         width: "100%",
         border: "0.05rem solid rgb(0 0 0 / 50%)",
-        position: "relative",
+        position: "relative" as const,
         background: `repeating-linear-gradient(to right,
           transparent 0  calc(${verticalGridCellCount}px - 1px),
           rgb(0 0 0 / 50%) calc(${verticalGridCellCount}px - 1px) ${verticalGridCellCount}px),

@@ -79,8 +79,6 @@ export const BarChart = ({ series, height }: BarChartProps) => {
           })}
         </div>
 
-        {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
-        {/* @ts-ignore */}
         <div {...getBarChartProps()}>
           {augmentedSeries.map((series) => (
             <Bar
