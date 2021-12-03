@@ -3,7 +3,7 @@ import type { Series } from "../../types";
 
 export interface AugmentedSeriesProps<TElement> {
   getBarProps: (
-    additionalBarProps?: DetailedHTMLProps<HTMLAttributes<TElement>, TElement>
+    additionalBarProps?: DetailedHTMLProps<HTMLAttributes<TElement>, TElement>,
   ) => DetailedHTMLProps<HTMLAttributes<TElement>, TElement>;
 }
 
