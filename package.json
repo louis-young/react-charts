@@ -8,8 +8,10 @@
     "test": "craco test",
     "lint": "eslint \"./src/**/*.{ts,tsx}\"",
     "lint:fix": "npm run lint -- --fix",
-    "format": "prettier --write \"./src/**/*.{ts,tsx}\"",
-    "eject": "react-scripts eject"
+    "format": "prettier --check \"./src/**/*.{ts,tsx}\"",
+    "format:write": "prettier --write \"./src/**/*.{ts,tsx}\"",
+    "eject": "react-scripts eject",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@craco/craco": "^6.1.1",
@@ -40,7 +42,8 @@
     "postcss": "^7.0.36",
     "prettier": "^2.5.0",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.1.0",
-    "typescript": "^4.2.4"
+    "typescript": "^4.2.4",
+    "husky": "^7.0.0"
   },
   "browserslist": {
     "production": [
