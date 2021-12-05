@@ -1,11 +1,6 @@
 import type { BarProps } from "./types";
 
-export const Bar = ({
-  series,
-  selectedSeriesLabel,
-  onSelectedSeriesLabelChange,
-  onTooltipChange,
-}: BarProps<HTMLDivElement>) => {
+export const Bar = ({ series, onTooltipChange }: BarProps<HTMLDivElement>) => {
   const { label, value, getBarProps } = series;
 
   const handleMouseEnter = () => {
@@ -18,17 +13,11 @@ export const Bar = ({
     onTooltipChange(undefined);
   };
 
-  const isSelectedSeries = label === selectedSeriesLabel;
-
   return (
     <div
       {...getBarProps({
-        style: {
-          cursor: "pointer",
-          border: isSelectedSeries ? "0.2rem solid black" : undefined,
-        },
         onClick: () => {
-          onSelectedSeriesLabelChange(label);
+          // Perform a side effect...
         },
       })}
       onMouseEnter={handleMouseEnter}

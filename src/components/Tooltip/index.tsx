@@ -6,12 +6,13 @@ export const Tooltip = ({ text }: TooltipProps) => {
       style={{
         color: "white",
         fontWeight: 500,
-        padding: ".75rem 1.5rem",
+        padding: ".5rem 1rem",
         backgroundColor: "rgba(71, 71, 71, 0.75)",
         borderRadius: ".125rem",
         position: "absolute",
-        top: 0,
+        bottom: 0,
         right: 0,
+        zIndex: 1,
       }}
     >
       {text}

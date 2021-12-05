@@ -37,12 +37,11 @@ export const useBarChart = ({ series, height }: UseBarChartParameters) => {
 
   const yAxisLabelStep = highestSeriesValue / yAxisLabelCount;
 
-  const axisLabels = {
-    x: series.map(({ label }) => label),
-    y: [...Array(yAxisLabelCount + 1)]
-      .map((item, index) => yAxisLabelStep * index)
-      .reverse(), // Plus one to account for zero index and reverse for display.
-  };
+  const xAxisLabels = series.map(({ label }) => label);
+
+  const yAxisLabels = [...Array(yAxisLabelCount + 1)]
+    .map((item, index) => yAxisLabelStep * index)
+    .reverse(); // Plus one to account for zero index and reverse for display.
 
   const seriesCount = series.length;
 
@@ -73,7 +72,8 @@ export const useBarChart = ({ series, height }: UseBarChartParameters) => {
 
   return {
     augmentedSeries,
-    axisLabels,
+    xAxisLabels,
+    yAxisLabels,
     highestSeriesValue,
     getBarChartProps,
   };

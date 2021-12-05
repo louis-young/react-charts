@@ -9,7 +9,5 @@ export interface AugmentedSeriesProps<TElement> {
 
 export interface BarProps<TElement> {
   series: Series[number] & AugmentedSeriesProps<TElement>;
-  selectedSeriesLabel: string | undefined;
-  onSelectedSeriesLabelChange: (newSelectedSeriesLabel: string) => void;
   onTooltipChange: (newTooltip: string | undefined) => void;
 }

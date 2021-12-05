@@ -4,15 +4,18 @@ import { Bar } from "../Bar";
 import { Tooltip } from "../Tooltip";
 import type { BarChartProps } from "./types";
 
-export const BarChart = ({ series, height }: BarChartProps) => {
-  const [selectedSeriesLabel, setSelectedSeriesLabel] = useState<
-    string | undefined
-  >();
-
-  const { augmentedSeries, axisLabels, getBarChartProps } = useBarChart({
-    series,
-    height,
-  });
+export const BarChart = ({
+  title,
+  xAxisTitle,
+  yAxisTitle,
+  series,
+  height,
+}: BarChartProps) => {
+  const { augmentedSeries, xAxisLabels, yAxisLabels, getBarChartProps } =
+    useBarChart({
+      series,
+      height,
+    });
 
   const [tooltip, setTooltip] = useState<string | undefined>(undefined);
 
@@ -22,31 +25,41 @@ export const BarChart = ({ series, height }: BarChartProps) => {
 
   return (
     <div style={{ position: "relative" }}>
-      <h2
-        style={{
-          fontSize: "1.6rem",
-          fontWeight: "bold",
-          marginBottom: "1rem",
-          opacity: 80,
-          textAlign: "center",
-        }}
-      >
-        Fruit consumption in Britain
-      </h2>
-
       {tooltip && <Tooltip text={tooltip} />}
 
       <div
         style={{
           display: "grid",
           gridTemplateColumns: "3rem 3rem 1fr",
-          gridTemplateRows: "1fr 3rem 2rem",
+          gridTemplateRows: "3rem 1fr 3rem 2rem",
         }}
       >
         <div
           style={{
             gridRowStart: 1,
             gridRowEnd: 2,
+            gridColumnStart: 3,
+            gridColumnEnd: 4,
+            display: "flex",
+            alignItems: "flex-start",
+            justifyContent: "center",
+          }}
+        >
+          <h2
+            style={{
+              fontSize: "1.4rem",
+              fontWeight: "bold",
+              opacity: 80,
+            }}
+          >
+            {title}
+          </h2>
+        </div>
+
+        <div
+          style={{
+            gridRowStart: 2,
+            gridRowEnd: 3,
             gridColumnStart: 1,
             gridColumnEnd: 2,
             display: "flex",
@@ -56,13 +69,13 @@ export const BarChart = ({ series, height }: BarChartProps) => {
             fontWeight: 500,
           }}
         >
-          <h3 style={{ transform: "rotate(-90deg)" }}>Amount</h3>
+          <h3 style={{ transform: "rotate(-90deg)" }}>{yAxisTitle}</h3>
         </div>
 
-        <div
+        <ol
           style={{
-            gridRowStart: 1,
-            gridRowEnd: 2,
+            gridRowStart: 2,
+            gridRowEnd: 3,
             gridColumnStart: 2,
             gridColumnEnd: 3,
             display: "flex",
@@ -70,39 +83,40 @@ export const BarChart = ({ series, height }: BarChartProps) => {
             justifyContent: "space-between",
           }}
         >
-          {axisLabels.y.map((label) => {
+          {yAxisLabels.map((yAxisLabel) => {
             return (
-              <h4
-                key={label}
-                style={{
-                  textAlign: "center",
-                  fontSize: ".9rem",
-                  opacity: 0.8,
-                  lineHeight: "initial",
-                }}
-              >
-                {label}
-              </h4>
+              <li key={yAxisLabel}>
+                <h4
+                  style={{
+                    textAlign: "center",
+                    fontSize: ".9rem",
+                    opacity: 0.8,
+                    lineHeight: "initial",
+                  }}
+                >
+                  {yAxisLabel}
+                </h4>
+              </li>
             );
           })}
+        </ol>
+
+        <div style={{ gridColumnStart: 3, gridColumnEnd: 4 }}>
+          <div {...getBarChartProps()}>
+            {augmentedSeries.map((series) => (
+              <Bar
+                series={series}
+                onTooltipChange={handleTooltipChange}
+                key={series.value}
+              />
+            ))}
+          </div>
         </div>
 
-        <div {...getBarChartProps()}>
-          {augmentedSeries.map((series) => (
-            <Bar
-              series={series}
-              selectedSeriesLabel={selectedSeriesLabel}
-              onSelectedSeriesLabelChange={setSelectedSeriesLabel}
-              onTooltipChange={handleTooltipChange}
-              key={series.value}
-            />
-          ))}
-        </div>
-
-        <div
+        <ol
           style={{
-            gridRowStart: 2,
-            gridRowEnd: 3,
+            gridRowStart: 3,
+            gridRowEnd: 4,
             gridColumnStart: 3,
             gridColumnEnd: 4,
             display: "grid",
@@ -111,22 +125,27 @@ export const BarChart = ({ series, height }: BarChartProps) => {
             alignItems: "center",
           }}
         >
-          {axisLabels.x.map((label) => {
+          {xAxisLabels.map((xAxisLabel) => {
             return (
-              <h4
-                key={label}
-                style={{ textAlign: "center", fontSize: ".9rem", opacity: 0.8 }}
-              >
-                {label}
-              </h4>
+              <li key={xAxisLabel}>
+                <h4
+                  style={{
+                    textAlign: "center",
+                    fontSize: ".9rem",
+                    opacity: 0.8,
+                  }}
+                >
+                  {xAxisLabel}
+                </h4>
+              </li>
             );
           })}
-        </div>
+        </ol>
 
         <div
           style={{
-            gridRowStart: 3,
-            gridRowEnd: 4,
+            gridRowStart: 4,
+            gridRowEnd: 5,
             gridColumnStart: 3,
             gridColumnEnd: 4,
             display: "flex",
@@ -136,7 +155,7 @@ export const BarChart = ({ series, height }: BarChartProps) => {
             fontWeight: 500,
           }}
         >
-          <h3>Fruit</h3>
+          <h3>{xAxisTitle}</h3>
         </div>
       </div>
     </div>
