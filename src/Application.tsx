@@ -11,8 +11,8 @@ const series = [
 
 export const Application = () => {
   return (
-    <main className="p-12">
-      <section className="max-w-3xl">
+    <main style={{ padding: "2rem" }}>
+      <section style={{ maxWidth: "50rem" }}>
         <BarChart series={series} height={500} />
       </section>
     </main>

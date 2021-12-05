@@ -21,8 +21,16 @@ export const BarChart = ({ series, height }: BarChartProps) => {
   };
 
   return (
-    <div className="relative">
-      <h2 className="text-2xl font-bold mb-6 opacity-80 text-center">
+    <div style={{ position: "relative" }}>
+      <h2
+        style={{
+          fontSize: "1.6rem",
+          fontWeight: "bold",
+          marginBottom: "1rem",
+          opacity: 80,
+          textAlign: "center",
+        }}
+      >
         Fruit consumption in Britain
       </h2>
 
