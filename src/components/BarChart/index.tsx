@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useBarChart } from "../../hooks/useBarChart";
 import { Bar } from "../Bar";
 import { Tooltip } from "../Tooltip";
+import { XAxis } from "../XAxis";
+import { YAxis } from "../YAxis";
 import type { BarChartProps } from "./types";
 
 export const BarChart = ({
@@ -55,7 +57,6 @@ export const BarChart = ({
             {title}
           </h2>
         </div>
-
         <div
           style={{
             gridRowStart: 2,
@@ -71,37 +72,7 @@ export const BarChart = ({
         >
           <h3 style={{ transform: "rotate(-90deg)" }}>{yAxisTitle}</h3>
         </div>
-
-        <ol
-          style={{
-            gridRowStart: 2,
-            gridRowEnd: 3,
-            gridColumnStart: 2,
-            gridColumnEnd: 3,
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between",
-            paddingRight: ".5rem",
-          }}
-        >
-          {yAxisLabels.map((yAxisLabel) => {
-            return (
-              <li key={yAxisLabel}>
-                <h4
-                  style={{
-                    textAlign: "right",
-                    fontSize: ".9rem",
-                    opacity: 0.8,
-                    lineHeight: "initial",
-                  }}
-                >
-                  {yAxisLabel.toLocaleString()}
-                </h4>
-              </li>
-            );
-          })}
-        </ol>
-
+        <YAxis labels={yAxisLabels} />
         <div style={{ gridColumnStart: 3, gridColumnEnd: 4 }}>
           <div {...getBarChartProps()}>
             {augmentedSeries.map((series) => (
@@ -114,34 +85,7 @@ export const BarChart = ({
           </div>
         </div>
 
-        <ol
-          style={{
-            gridRowStart: 3,
-            gridRowEnd: 4,
-            gridColumnStart: 3,
-            gridColumnEnd: 4,
-            display: "grid",
-            gridTemplateColumns: `repeat(${series.length}, 1fr)`,
-            columnGap: "1.5rem",
-            alignItems: "center",
-          }}
-        >
-          {xAxisLabels.map((xAxisLabel) => {
-            return (
-              <li key={xAxisLabel}>
-                <h4
-                  style={{
-                    textAlign: "center",
-                    fontSize: ".9rem",
-                    opacity: 0.8,
-                  }}
-                >
-                  {xAxisLabel}
-                </h4>
-              </li>
-            );
-          })}
-        </ol>
+        <XAxis labels={xAxisLabels} seriesLength={series.length} />
 
         <div
           style={{
