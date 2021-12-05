@@ -17,7 +17,8 @@
     "@craco/craco": "^6.1.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-scripts": "4.0.3"
+    "react-scripts": "4.0.3",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.1.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss7-compat": "^2.1.0",
@@ -41,7 +42,6 @@
     "eslint-plugin-react-hooks": "^4.3.0",
     "postcss": "^7.0.36",
     "prettier": "^2.5.0",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.1.0",
     "typescript": "^4.2.4",
     "husky": "^7.0.0"
   },
