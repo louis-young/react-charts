@@ -17,11 +17,9 @@
     "@craco/craco": "^6.1.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-scripts": "4.0.3",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.1.0"
+    "react-scripts": "4.0.3"
   },
   "devDependencies": {
-    "@tailwindcss/postcss7-compat": "^2.1.0",
     "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.8.3",
@@ -31,7 +29,6 @@
     "@types/react-dom": "^17.0.3",
     "@typescript-eslint/eslint-plugin": "^4.15.1",
     "@typescript-eslint/parser": "^5.5.0",
-    "autoprefixer": "^9.8.6",
     "eslint-config-airbnb": "^19.0.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-import-resolver-typescript": "^2.5.0",
@@ -40,10 +37,9 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.27.1",
     "eslint-plugin-react-hooks": "^4.3.0",
-    "postcss": "^7.0.36",
+    "husky": "^7.0.0",
     "prettier": "^2.5.0",
-    "typescript": "^4.2.4",
-    "husky": "^7.0.0"
+    "typescript": "^4.2.4"
   },
   "browserslist": {
     "production": [
