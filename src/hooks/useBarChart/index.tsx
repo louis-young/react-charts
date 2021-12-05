@@ -40,7 +40,7 @@ export const useBarChart = ({ series, height }: UseBarChartParameters) => {
   const xAxisLabels = series.map(({ label }) => label);
 
   const yAxisLabels = [...Array(yAxisLabelCount + 1)] // Plus one to account for zero index
-    .map((item, index) => yAxisLabelStep * index)
+    .map((item, index) => Math.round(yAxisLabelStep * index))
     .reverse(); // Reverse for display.
 
   const seriesCount = series.length;
