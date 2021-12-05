@@ -39,9 +39,9 @@ export const useBarChart = ({ series, height }: UseBarChartParameters) => {
 
   const xAxisLabels = series.map(({ label }) => label);
 
-  const yAxisLabels = [...Array(yAxisLabelCount + 1)]
+  const yAxisLabels = [...Array(yAxisLabelCount + 1)] // Plus one to account for zero index
     .map((item, index) => yAxisLabelStep * index)
-    .reverse(); // Plus one to account for zero index and reverse for display.
+    .reverse(); // Reverse for display.
 
   const seriesCount = series.length;
 

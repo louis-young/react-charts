@@ -24,29 +24,34 @@ The library exposes a hook for each type of chart. You then consume this hook in
 
 ```tsx
 const series = [
-  { label: "Apple", value: 1, colour: "#003f5c" },
-  { label: "Orange", value: 2, colour: "#444e86" },
-  { label: "Strawberry", value: 3, colour: "#955196" },
-  { label: "Grapefruit", value: 4, colour: "#dd5182" },
-  { label: "Lemon", value: 5, colour: "#ff6e54" },
-  { label: "Grape", value: 6, colour: "#ffa600" },
+  { label: "Apple", value: 100, colour: "#003f5c" },
+  { label: "Orange", value: 200, colour: "#444e86" },
+  { label: "Strawberry", value: 300, colour: "#955196" },
+  { label: "Grapefruit", value: 400, colour: "#dd5182" },
 ];
 
-const { augmentedSeries, axisLabels, getBarChartProps } = useBarChart({
-  series,
-});
+// ...
+
+const { augmentedSeries, xAxisLabels, yAxisLabels, getBarChartProps } =
+  useBarChart({
+    series,
+    height: 300,
+  });
 ```
 
 #### Options
 
 - `series: { label: string; value: number; colour: string; }[]` - The series of chart data.
+
   - `label` - The label of the bar on the chart.
   - `value` - The value of the bar on the chart.
   - `colour` - The colour of the bar on the chart.
 
+- `height: number;` - The height of the chart.
+
 #### Returns
 
-- `augmentedSeries` - An augmented/enriched version of the series data with additional properties used to compose the chart.
+- `augmentedSeries` - An augmented/enriched version of the series data with additional properties needed to compose the chart.
 
   ```
   {
@@ -62,10 +67,8 @@ const { augmentedSeries, axisLabels, getBarChartProps } = useBarChart({
   - `value` - The value of the bar on the chart.
   - `colour` - The colour of the bar on the chart.
 
-- `axisLabels: { x: string[]; y: string[] }` - An array of x axis labels.
-
-  - `x` - The x axis labels.
-  - `y` - The y axis labels.
+- `xAxisLabels: string[];` - An array of the x axis labels.
+- `yAxisLabels: string[];` - An array of the y axis labels.
 
 - `getBarChartProps` - A function that returns the necessary collection of properties for the parent chart element.
 
@@ -73,18 +76,16 @@ const { augmentedSeries, axisLabels, getBarChartProps } = useBarChart({
 
 ```tsx
 const series = [
-  { label: "Apple", value: 1, colour: "#003f5c" },
-  { label: "Orange", value: 2, colour: "#444e86" },
-  { label: "Strawberry", value: 3, colour: "#955196" },
-  { label: "Grapefruit", value: 4, colour: "#dd5182" },
-  { label: "Lemon", value: 5, colour: "#ff6e54" },
-  { label: "Grape", value: 6, colour: "#ffa600" },
+  { label: "Apple", value: 100, colour: "#003f5c" },
+  { label: "Orange", value: 200, colour: "#444e86" },
+  { label: "Strawberry", value: 300, colour: "#955196" },
+  { label: "Grapefruit", value: 400, colour: "#dd5182" },
 ];
 
 const BarChart = () => {
   const { augmentedSeries, getBarChartProps } = useBarChart({
     series,
-    height: 500
+    height: 300,
   });
 
   return (
@@ -96,4 +97,3 @@ const BarChart = () => {
   );
 };
 ```
-

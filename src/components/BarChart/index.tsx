@@ -30,7 +30,7 @@ export const BarChart = ({
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "3rem 3rem 1fr",
+          gridTemplateColumns: "3rem 4rem 1fr",
           gridTemplateRows: "3rem 1fr 3rem 2rem",
         }}
       >
@@ -81,6 +81,7 @@ export const BarChart = ({
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-between",
+            paddingRight: ".5rem",
           }}
         >
           {yAxisLabels.map((yAxisLabel) => {
@@ -88,13 +89,13 @@ export const BarChart = ({
               <li key={yAxisLabel}>
                 <h4
                   style={{
-                    textAlign: "center",
+                    textAlign: "right",
                     fontSize: ".9rem",
                     opacity: 0.8,
                     lineHeight: "initial",
                   }}
                 >
-                  {yAxisLabel}
+                  {yAxisLabel.toLocaleString()}
                 </h4>
               </li>
             );
